@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { CheckCircle2 } from "lucide-react"
 import { toast } from "sonner"
@@ -76,11 +75,7 @@ const handleChange = (key:string, value:string ) => {
     setIsSubmitted(true)
   }
 
-  const formFields = [
-    { id: "name", label: "Full Name", placeholder: "Juan Dela Cruz", type: "text" },
-    { id: "email", label: "Email Address", placeholder: "juan@example.com", type: "email" },
-    { id: "phone", label: "Phone Number", placeholder: "+63 912 345 6789", type: "text" },
-  ]
+
 
   const formVariants = {
     hidden: { opacity: 0 },
@@ -115,7 +110,7 @@ const handleChange = (key:string, value:string ) => {
         </motion.div>
         <h3 className="text-xl font-bold mb-2 text-gray-900">Thank You!</h3>
         <p className="text-gray-600 mb-6">
-          Your inquiry has been submitted successfully. I'll get back to you within 24 hours.
+          Your inquiry has been submitted successfully. I&apos;ll get back to you within 24 hours.
         </p>
         <Button onClick={() => setIsSubmitted(false)} variant="outline">
           Submit Another Inquiry

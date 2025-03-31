@@ -1,17 +1,12 @@
 "use client"
-
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Play } from "lucide-react"
+import { Card,  } from "@/components/ui/card"
 
 interface YouTubeEmbedProps {
-  videoId: string
+ 
   title: string
 }
 
-export default function YouTubeEmbed({ videoId, title }: YouTubeEmbedProps) {
-  const [isHovered, setIsHovered] = useState(false)
+export default function YouTubeEmbed({  title }: YouTubeEmbedProps) {
 
   // In a real implementation, you would use the actual YouTube embed
   // For this example, we're using a placeholder

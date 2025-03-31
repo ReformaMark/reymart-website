@@ -9,7 +9,7 @@ import { useCheckRole } from "@/hooks/use-check-role"
 export function RoleCheck() {
     const router = useRouter()
     const { isAuthenticated, isLoading: isAuthLoading } = useConvexAuth()
-    const { data: user, isLoading: isRoleLoading } = useCheckRole()
+    const { isLoading: isRoleLoading } = useCheckRole()
 
     useEffect(() => {
         if (!isAuthLoading && !isRoleLoading && isAuthenticated) {

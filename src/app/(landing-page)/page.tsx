@@ -3,8 +3,7 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { YoutubeIcon, MessageCircle, Phone, Mail, Instagram, Facebook } from "lucide-react"
+import {MessageCircle, Phone, Mail } from "lucide-react"
 import LeadForm from "@/components/lead-form"
 import FeaturedCars from "@/components/featured-cars"
 import YouTubeEmbed from "@/components/youtube-embed"
@@ -48,12 +47,12 @@ export default function Home() {
             <div>
               <h2 className="text-3xl font-bold mb-6 text-gray-900">About Reymart Marfil</h2>
               <p className="text-lg text-gray-700 mb-6">
-                With over 5 years of experience as a Mitsubishi sales consultant, I'm dedicated to helping you find the
+                With over 5 years of experience as a Mitsubishi sales consultant, I&apos;m dedicated to helping you find the
                 perfect vehicle that matches your needs and budget.
               </p>
               <p className="text-lg text-gray-700 mb-8">
                 I pride myself on providing exceptional customer service and in-depth knowledge of the entire Mitsubishi
-                lineup. Whether you're looking for a family SUV, a rugged pickup, or an efficient sedan, I'm here to
+                lineup. Whether you&apos;re looking for a family SUV, a rugged pickup, or an efficient sedan, I&apos;m here to
                 guide you through every step of the process.
               </p>
               <div className="flex flex-wrap gap-4">
@@ -100,7 +99,7 @@ export default function Home() {
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
-            <YouTubeEmbed videoId="featured1" title="2023 Mitsubishi Xpander - Full Tour" />
+            <YouTubeEmbed  title="2023 Mitsubishi Xpander - Full Tour" />
                
           </AnimatedSection>
         </div>
@@ -113,7 +112,7 @@ export default function Home() {
             <div>
               <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
               <p className="text-lg text-gray-300 mb-8">
-                Interested in a specific model? Have questions about financing or trade-ins? Fill out the form and I'll
+                Interested in a specific model? Have questions about financing or trade-ins? Fill out the form and I&apos;ll
                 get back to you within 24 hours.
               </p>
               <div className="space-y-6">

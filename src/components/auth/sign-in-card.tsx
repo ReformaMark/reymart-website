@@ -1,5 +1,5 @@
+/* eslint-disable */
 import { useState } from "react";
-import { AuthFlow } from "./auth-screen"
 import { useAuthActions } from "@convex-dev/auth/react"
 import { TriangleAlertIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -11,15 +11,10 @@ import {
     CardTitle
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Separator } from "../ui/separator";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 
-export const SignInCard = ({
-    setState
-}: {
-    setState: (state: AuthFlow) => void
-}) => {
+export const SignInCard = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("")

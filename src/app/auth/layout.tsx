@@ -3,7 +3,6 @@ import "@/lib/globals.css"
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server"
 import { ConvexClientProvider } from "@/components/convex-client-provider";
 import { Poppins } from "next/font/google"
-import Main from "./_component/main";
 
 const poppinsFont = Poppins({
     subsets: ["latin"],
@@ -27,7 +26,7 @@ export default function RootLayout({
           <body
             className={`${poppinsFont.className} antialiased`}
           > 
-            <Main children={children}/>
+            {children}
           </body>
         </html>
       </ConvexClientProvider>

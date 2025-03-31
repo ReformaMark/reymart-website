@@ -45,7 +45,7 @@ export default function HeroAnimation() {
         >
           <Image src="/mitsubishi-logo.png" alt="Mitsubishi Logo" width={60} height={60} className="h-12 w-auto" />
           <Badge variant="outline" className="text-white border-white py-1">
-            Authorized Sales Agent
+            Accredited Sales Executive
           </Badge>
         </motion.div>
 

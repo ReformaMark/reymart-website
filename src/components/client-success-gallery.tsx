@@ -209,7 +209,7 @@ const handleClientClick = (client: ClientSuccess): void => {
                     <h3 className="font-bold text-lg">{activeClient.name}</h3>
                     <Badge className="bg-red-600">{activeClient.vehicle}</Badge>
                   </div>
-                  <p className="text-gray-700 italic mb-3">"{activeClient.quote}"</p>
+                  <p className="text-gray-700 italic mb-3">&quot;{activeClient.quote}&quot;</p>
                   <div className="flex flex-wrap gap-3 text-sm text-gray-600">
                     <div className="flex items-center gap-1">
                       <Calendar className="h-4 w-4" />
@@ -241,7 +241,7 @@ const handleClientClick = (client: ClientSuccess): void => {
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                   <Badge className="bg-red-600 mb-2">{activeClient.vehicle}</Badge>
                   <h3 className="text-2xl font-bold mb-1">{activeClient.name}</h3>
-                  <p className="text-white/90 mb-4">"{activeClient.quote}"</p>
+                  <p className="text-white/90 mb-4">&quot;{activeClient.quote}&quot;</p>
 
                   <div className="flex flex-wrap gap-4 text-white/80 text-sm mb-4">
                     <div className="flex items-center gap-1">

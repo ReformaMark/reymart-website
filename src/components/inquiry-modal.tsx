@@ -38,15 +38,6 @@ interface FormData {
     }
 }
 
-interface ChangeEvent {
-    target: {
-        name: keyof FormData
-        value: string
-    }
-}
-
-interface SubmitEvent extends React.FormEvent<HTMLFormElement> {}
-
 export default function InquiryModal({ children, vehicleModel }: InquiryModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -136,7 +127,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
         <DialogHeader className="pt-12">
           <DialogTitle>Vehicle Inquiry</DialogTitle>
-          <DialogDescription>Fill out the form below and I'll get back to you within 24 hours.</DialogDescription>
+          <DialogDescription>Fill out the form below and I&apos;ll get back to you within 24 hours.</DialogDescription>
         </DialogHeader>
 
         {isSubmitted ? (
@@ -146,7 +137,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             </div>
             <h3 className="text-xl font-bold mb-2">Thank You!</h3>
             <p className="text-gray-600 mb-6">
-              Your inquiry has been submitted successfully. I'll get back to you within 24 hours.
+              Your inquiry has been submitted successfully. I&apos;ll get back to you within 24 hours.
             </p>
             <Button onClick={resetForm} variant="outline">
               Submit Another Inquiry

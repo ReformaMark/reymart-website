@@ -50,7 +50,7 @@ const cars = [
 ]
 
 export default function FeaturedCars() {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [, setActiveIndex] = useState(0)
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
 
