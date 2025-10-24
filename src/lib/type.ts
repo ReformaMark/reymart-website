@@ -10,5 +10,5 @@ export interface VehicleType {
   images: string[];
   ytLink?: string;
   description: string;
-  moreDetails?: Record<string, any>;
+  moreDetails?: Record<string, string>;
 }

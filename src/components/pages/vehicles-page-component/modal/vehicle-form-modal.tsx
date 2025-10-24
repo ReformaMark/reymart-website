@@ -54,6 +54,10 @@ export function VehicleFormModal({
     }
   );
 
+  // const generateUploadUrl = useMutation(api.image.generateUploadUrl);
+  // const { startUpload, isUploading } = useUploadFiles(generateUploadUrl);
+  // const saveStorageIds = useMutation(api.image.saveStorageIds);
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -190,20 +194,6 @@ export function VehicleFormModal({
                 </SelectContent>
               </Select>
             </div>
-          </div>
-
-          <div>
-            <Label className="block text-sm font-medium text-foreground mb-2">
-              Posted Date
-            </Label>
-            <Input
-              name="posted"
-              type="date"
-              value={formData.posted}
-              onChange={handleChange}
-              className="bg-secondary/20 border-border text-foreground"
-              required
-            />
           </div>
 
           <div>

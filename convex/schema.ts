@@ -24,4 +24,9 @@ export default defineSchema({
     description: v.string(),
     moreDetails: v.optional(v.record(v.string(), v.any())),
   }),
+
+  image: defineTable({
+    imageStorageId: v.string(),
+    vehicleId: v.id("vehicles"),
+  }).index("by_vehicle", ["vehicleId"]),
 });
