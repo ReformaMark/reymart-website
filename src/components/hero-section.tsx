@@ -1,63 +1,98 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
-import { motion, useAnimation, useInView, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { YoutubeIcon, ChevronDown, MapPin, Phone, Calendar, ArrowRight, ExternalLink, Car, Users, Award, Shield } from "lucide-react"
-import Link from "next/link"
-import LogoWhite from '@/../public/images/mitsubishi-logo-white.webp'
-import Client from '@/../public/images/client.jpg'
-import Client1 from '@/../public/images/client1.jpg'
-import Client2 from '@/../public/images/client2.jpg'
-import Client3 from '@/../public/images/client3.jpg'
-import Client4 from '@/../public/images/client4.jpg'
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import {
+  motion,
+  useAnimation,
+  useInView,
+  AnimatePresence,
+} from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  YoutubeIcon,
+  ChevronDown,
+  MapPin,
+  Phone,
+  Calendar,
+  ArrowRight,
+  ExternalLink,
+  Car,
+  Users,
+  Award,
+  Shield,
+} from "lucide-react";
+import Link from "next/link";
+import LogoWhite from "@/../public/images/mitsubishi-logo-white.webp";
+import Client from "@/../public/images/client.jpg";
+import Client1 from "@/../public/images/client1.jpg";
+import Client2 from "@/../public/images/client2.jpg";
+import Client3 from "@/../public/images/client3.jpg";
+import Client4 from "@/../public/images/client4.jpg";
 // Sample featured client images for the rotating showcase
-const featuredClients = [
-  Client,
-  Client1,
-  Client2,
-  Client3,
-  Client4,
-]
+const featuredClients = [Client, Client1, Client2, Client3, Client4];
 
-export default function HeroSection() {
-  const controls = useAnimation()
-  const ref = useRef(null)
-  const inView = useInView(ref)
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [isHoveringAgent, setIsHoveringAgent] = useState(false)
-  const [hoveredButton, setHoveredButton] = useState<string | null>(null)
+export default function HeroSection({
+  homeRef,
+}: {
+  homeRef: React.RefObject<HTMLElement | null>;
+}) {
+  const controls = useAnimation();
+  const inView = useInView(homeRef);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isClickedAgent, setIsClickedAgent] = useState(false);
+  const [hoveredButton, setHoveredButton] = useState<string | null>(null);
 
   useEffect(() => {
     if (inView) {
-      controls.start("visible")
+      controls.start("visible");
     }
-  }, [controls, inView])
+  }, [controls, inView]);
 
   // Auto-rotate client images
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex === featuredClients.length - 1 ? 0 : prevIndex + 1))
-    }, 3000)
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === featuredClients.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
-  const scrollToVehicles = () => {
-    document.getElementById("vehicles")?.scrollIntoView({ behavior: "smooth" })
-  }
+  const scrollToAbout = () => {
+    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const stats = [
-    { icon: <Car className="h-5 w-5" />, value: "200+", label: "Cars Delivered" },
-    { icon: <Users className="h-5 w-5" />, value: "150+", label: "Happy Clients" },
-    { icon: <Award className="h-5 w-5" />, value: "5", label: "Years Experience" },
-    { icon: <Shield className="h-5 w-5" />, value: "100%", label: "Satisfaction" },
-  ]
+    {
+      icon: <Car className="h-5 w-5" />,
+      value: "200+",
+      label: "Cars Delivered",
+    },
+    {
+      icon: <Users className="h-5 w-5" />,
+      value: "150+",
+      label: "Happy Clients",
+    },
+    {
+      icon: <Award className="h-5 w-5" />,
+      value: "5",
+      label: "Years Experience",
+    },
+    {
+      icon: <Shield className="h-5 w-5" />,
+      value: "100%",
+      label: "Satisfaction",
+    },
+  ];
 
   return (
-    <section ref={ref} className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      ref={homeRef}
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
+    >
       {/* Dark background with subtle pattern */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900 to-black">
         {/* Subtle pattern overlay */}
@@ -82,7 +117,8 @@ export default function HeroSection() {
         <motion.div
           className="absolute inset-0 opacity-10"
           style={{
-            background: "radial-gradient(circle at 30% 50%, rgba(230, 0, 18, 0.4), transparent 70%)",
+            background:
+              "radial-gradient(circle at 30% 50%, rgba(230, 0, 18, 0.4), transparent 70%)",
           }}
           animate={{
             opacity: [0.1, 0.15, 0.1],
@@ -104,10 +140,24 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="flex items-center justify-center md:justify-start gap-3 mb-6"
           >
-            <motion.div whileHover={{ rotate: [0, 5, -5, 0], transition: { duration: 0.5 } }}>
-              <Image src={LogoWhite} alt="Mitsubishi Logo" width={60} height={60} className="h-12 w-auto" />
+            <motion.div
+              whileHover={{
+                rotate: [0, 5, -5, 0],
+                transition: { duration: 0.5 },
+              }}
+            >
+              <Image
+                src={LogoWhite}
+                alt="Mitsubishi Logo"
+                width={60}
+                height={60}
+                className="h-12 w-auto"
+              />
             </motion.div>
-            <Badge variant="outline" className="text-white border-white/30 py-1 backdrop-blur-sm bg-white/5">
+            <Badge
+              variant="outline"
+              className="text-white border-white/30 py-1 backdrop-blur-sm bg-white/5"
+            >
               Authorized Sales Agent
             </Badge>
           </motion.div>
@@ -137,7 +187,8 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
           >
             <p className="text-xl md:text-2xl text-gray-300 mb-6 max-w-2xl mx-auto md:mx-0">
-              Your trusted Mitsubishi sales executive. Helping you find the perfect vehicle for your lifestyle.
+              Your trusted Mitsubishi sales executive. Helping you find the
+              perfect vehicle for your lifestyle.
             </p>
           </motion.div>
           <motion.div
@@ -162,7 +213,9 @@ export default function HeroSection() {
                 >
                   {stat.icon}
                 </motion.div>
-                <div className="text-2xl font-bold text-white">{stat.value}</div>
+                <div className="text-2xl font-bold text-white">
+                  {stat.value}
+                </div>
                 <div className="text-xs text-white/80">{stat.label}</div>
               </motion.div>
             ))}
@@ -180,21 +233,30 @@ export default function HeroSection() {
                 <MapPin className="h-5 w-5 text-red-400" />
               </div>
               <div>
-                <p className="text-sm text-gray-400 font-medium">Mitsubishi Peak Motors Inc.</p>
-                <p className="text-gray-300">Jose Abad Santos Ave, San Fernando, Pampanga</p>
+                <p className="text-sm text-gray-400 font-medium">
+                  Mitsubishi Peak Motors Inc.
+                </p>
+                <p className="text-gray-300">
+                  Jose Abad Santos Ave, San Fernando, Pampanga
+                </p>
               </div>
             </div>
 
             <motion.div
               className="flex items-center gap-2 bg-gray-800/50 backdrop-blur-sm rounded-lg px-4 py-3 border border-gray-700"
-              whileHover={{ y: -3, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.3)" }}
+              whileHover={{
+                y: -3,
+                boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.3)",
+              }}
               transition={{ duration: 0.2 }}
             >
               <div className="bg-red-900/50 p-2 rounded-full">
                 <Calendar className="h-5 w-5 text-red-400" />
               </div>
               <div>
-                <p className="text-sm text-gray-400 font-medium">Opening Hours</p>
+                <p className="text-sm text-gray-400 font-medium">
+                  Opening Hours
+                </p>
                 <p className="text-gray-300">Mon-Sat: 8:00 AM - 6:00 PM</p>
               </div>
             </motion.div>
@@ -213,7 +275,10 @@ export default function HeroSection() {
                 onHoverStart={() => setHoveredButton("offers")}
                 onHoverEnd={() => setHoveredButton(null)}
               >
-                <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white group relative overflow-hidden">
+                <Button
+                  size="lg"
+                  className="bg-red-600 hover:bg-red-700 text-white group relative overflow-hidden"
+                >
                   <motion.span
                     animate={{
                       x: hoveredButton === "offers" ? [-3, 0] : 0,
@@ -251,7 +316,8 @@ export default function HeroSection() {
                 >
                   <motion.span
                     animate={{
-                      color: hoveredButton === "contact" ? "#f87171" : "#ffffff",
+                      color:
+                        hoveredButton === "contact" ? "#f87171" : "#ffffff",
                     }}
                     transition={{ duration: 0.3 }}
                     className="relative z-10 flex items-center"
@@ -259,7 +325,8 @@ export default function HeroSection() {
                     <motion.span
                       animate={{
                         scale: hoveredButton === "contact" ? 1.1 : 1,
-                        color: hoveredButton === "contact" ? "#f87171" : "#ffffff",
+                        color:
+                          hoveredButton === "contact" ? "#f87171" : "#ffffff",
                       }}
                       transition={{ duration: 0.3 }}
                       className="mr-2"
@@ -272,7 +339,6 @@ export default function HeroSection() {
               </motion.div>
             </Link>
           </motion.div>
-          
 
           {/* Quick action link */}
           <motion.div
@@ -290,7 +356,11 @@ export default function HeroSection() {
               <motion.span
                 className="inline-block"
                 animate={{ x: [0, 3, 0] }}
-                transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5, repeatDelay: 0.5 }}
+                transition={{
+                  repeat: Number.POSITIVE_INFINITY,
+                  duration: 1.5,
+                  repeatDelay: 0.5,
+                }}
               >
                 →
               </motion.span>
@@ -317,7 +387,7 @@ export default function HeroSection() {
         </div>
 
         <motion.div
-          className="md:w-1/2 flex justify-center relative"
+          className="md:w-1/2 hidden md:flex justify-center relative"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
@@ -326,20 +396,24 @@ export default function HeroSection() {
           <motion.div
             className="relative w-[280px] h-[280px] md:w-[550px] md:h-[550px] rounded-full overflow-hidden"
             whileHover={{ scale: 1.03 }}
-            onHoverStart={() => setIsHoveringAgent(true)}
-            onHoverEnd={() => setIsHoveringAgent(false)}
-           
+            onClick={() => setIsClickedAgent(!isClickedAgent)}
           >
             {/* Animated border */}
             <motion.div
               className="absolute inset-0 rounded-full z-10"
-              
               animate={{
-                borderColor: isHoveringAgent
-                  ? ["rgba(255, 255, 255, 0.2)", "rgba(230, 0, 18, 0.8)", "rgba(255, 255, 255, 0.2)"]
+                borderColor: isClickedAgent
+                  ? [
+                      "rgba(255, 255, 255, 0.2)",
+                      "rgba(230, 0, 18, 0.8)",
+                      "rgba(255, 255, 255, 0.2)",
+                    ]
                   : "rgba(255, 255, 255, 0.2)",
               }}
-              transition={{ duration: 1.5, repeat: isHoveringAgent ? Number.POSITIVE_INFINITY : 0 }}
+              transition={{
+                duration: 1.5,
+                repeat: isClickedAgent ? Number.POSITIVE_INFINITY : 0,
+              }}
             />
 
             <Image
@@ -349,50 +423,55 @@ export default function HeroSection() {
               className="object-cover"
             />
 
-            {/* Animated overlay on hover */}
+            {/* Animated overlay on clicked */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end justify-center pb-8"
               initial={{ opacity: 0 }}
-              animate={{ opacity: isHoveringAgent ? 1 : 0 }}
+              animate={{ opacity: isClickedAgent ? 1 : 0 }}
               transition={{ duration: 0.3 }}
             >
-              <span className="text-white font-medium text-lg">Your Mitsubishi Expert</span>
+              <span className="text-white font-medium text-lg">
+                Your Mitsubishi Expert
+              </span>
             </motion.div>
           </motion.div>
 
           {/* Floating client images around the main profile */}
-            <div className="absolute -right-4 top-1/2 transform -translate-y-1/2">
+
+          <div className="absolute -right-4 top-1/2 transform -translate-y-1/2">
             <AnimatePresence mode="wait">
               <motion.div
-              key={currentImageIndex}
-              initial={{ opacity: 0, scale: 0.8, y: 50, x: -150}}
-              animate={{
-                opacity: isHoveringAgent ? 1 : 0,
-                scale: isHoveringAgent ? 1 : 0.8,
-                y: isHoveringAgent ? -150 : 50,
-                x: isHoveringAgent ? 10 : -150,
-              }}
-              exit={{ opacity: 0, scale: 0.8, y: 50, x:-150 }}
-              transition={{ duration: 0.5 }}
-              className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-gray-800 shadow-lg"
-              style={{
-                boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
-              }}
+                key={currentImageIndex}
+                initial={{ opacity: 0, scale: 0.8, y: 50, x: -150 }}
+                animate={{
+                  opacity: isClickedAgent ? 1 : 0,
+                  scale: isClickedAgent ? 1 : 0.8,
+                  y: isClickedAgent ? -150 : 50,
+                  x: isClickedAgent ? 10 : -150,
+                }}
+                exit={{ opacity: 0, scale: 0.8, y: 50, x: -150 }}
+                transition={{ duration: 0.5 }}
+                className="w-20 h-20 md:w-24 md:h-24 lg:size-32 overflow-hidden border-2 border-gray-800 shadow-lg"
+                style={{
+                  boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
+                }}
               >
-              <Image
-                src={featuredClients[currentImageIndex] || "/next.svg"}
-                alt="Happy Client"
-                width={96}
-                height={96}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                <div className="w-full text-center pb-1 text-white text-xs font-medium">Happy Client</div>
-              </div>
+                <Image
+                  src={featuredClients[currentImageIndex] || "/next.svg"}
+                  alt="Happy Client"
+                  width={96}
+                  height={96}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                  <div className="w-full text-center pb-1 text-white text-xs font-medium">
+                    Happy Client
+                  </div>
+                </div>
               </motion.div>
             </AnimatePresence>
-            </div>
-            {/* <div className="absolute left-1/2 -top-4">
+          </div>
+          {/* <div className="absolute left-1/2 -top-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.8, y: 50, x:50 }}
               animate={{
@@ -446,7 +525,8 @@ export default function HeroSection() {
           <motion.div
             className="absolute -z-10 w-full h-full rounded-full"
             style={{
-              background: "radial-gradient(circle, rgba(230,0,18,0.15) 0%, rgba(230,0,18,0) 70%)",
+              background:
+                "radial-gradient(circle, rgba(230,0,18,0.15) 0%, rgba(230,0,18,0) 70%)",
             }}
             animate={{
               scale: [1, 1.05, 1],
@@ -454,8 +534,6 @@ export default function HeroSection() {
             }}
             transition={{
               duration: 4,
-              repeat: Number.POSITIVE_INFINITY,
-              repeatType: "reverse",
             }}
           />
 
@@ -481,19 +559,22 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-0 md:bottom-10 left-1/2 transform -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2, ease: "easeInOut" }}
+          transition={{
+            repeat: Number.POSITIVE_INFINITY,
+            duration: 2,
+            ease: "easeInOut",
+          }}
           className="cursor-pointer"
-          onClick={scrollToVehicles}
+          onClick={scrollToAbout}
           whileHover={{ scale: 1.1 }}
         >
           <ChevronDown className="h-10 w-10 text-gray-500" />
         </motion.div>
       </motion.div>
     </section>
-  )
+  );
 }
-
