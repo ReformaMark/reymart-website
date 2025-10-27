@@ -42,8 +42,6 @@ export default function Home() {
     inViewRef.current = node;
   };
 
-  console.log(inViewRef.current);
-
   return (
     <div className="flex flex-col overflow-hidden min-h-screen">
       {/* Animated Header */}
@@ -68,7 +66,7 @@ export default function Home() {
       )}
 
       {/* Hero Section with Agent Image */}
-      <HeroSection homeRef={homeRef} />
+      <HeroSection homeRef={homeRef} vehiclesRef={vehiclesRef} />
 
       {/* About Section */}
       <section
@@ -89,7 +87,7 @@ export default function Home() {
             </div>
             <div>
               <h2 className="text-3xl font-bold mb-6 text-gray-900">
-                About Reymart Marfil
+                About Me
               </h2>
               <p className="text-lg text-gray-700 mb-6">
                 With over 5 years of experience as a Mitsubishi sales
@@ -152,7 +150,7 @@ export default function Home() {
           id="success-stories"
         >
           <div className="container mx-auto max-w-6xl">
-            <ClientSuccessGallery />
+            <ClientSuccessGallery contactRef={contactRef} />
           </div>
         </section>
 
@@ -174,7 +172,7 @@ export default function Home() {
         >
           <div className="container mx-auto max-w-6xl">
             <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div>
+              <div className="">
                 <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
                 <p className="text-lg text-gray-300 mb-8">
                   Interested in a specific model? Have questions about financing
@@ -188,7 +186,9 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-gray-400">Call or Text</p>
-                      <p className="text-lg font-medium">+63 929 109 9329</p>
+                      <p className="text-sm md:text-lg font-medium">
+                        +63 929 109 9329
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
@@ -197,7 +197,7 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-gray-400">Email</p>
-                      <p className="text-lg font-medium">
+                      <p className="text-sm md:text-lg font-medium">
                         mitsubishi.reymart@gmail.com
                       </p>
                     </div>
@@ -208,11 +208,13 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-gray-400">Messenger</p>
-                      <p className="text-lg font-medium">@ReymartMarfil</p>
+                      <p className="text-sm md:text-lg font-medium">
+                        @ReymartMarfil
+                      </p>
                     </div>
                   </div>
                 </div>
-                <div className="mt-8 flex gap-4">
+                <div className="mt-8 flex items-center justify-center md:justify-start gap-6">
                   <a
                     href="https://www.facebook.com/reymart.marfil.14"
                     target="_blank"
@@ -273,7 +275,7 @@ export default function Home() {
                   width={40}
                   height={40}
                 />
-                <span className="text-white font-medium">
+                <span className="text-white font-medium text-sm md:text-lg">
                   Reymart Marfil | Authorized Sales Agent
                 </span>
               </div>

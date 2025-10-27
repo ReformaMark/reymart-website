@@ -1,21 +1,29 @@
-"use client"
+"use client";
 
-import { useState, useRef } from "react"
-import Image from "next/image"
-import { motion, useInView, AnimatePresence } from "framer-motion"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, Camera, Calendar, MapPin, Car } from "lucide-react"
+import { useState, useRef } from "react";
+import Image from "next/image";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Camera,
+  Calendar,
+  MapPin,
+  Car,
+} from "lucide-react";
+import { useLenisScrollTo } from "@/hooks/use-lenis-scrollto";
 
 interface ClientSuccess {
-    id: number
-    name: string
-    vehicle: string
-    
-    date: string
-    location: string
-    quote: string
-    gallery: string[]
+  id: number;
+  name: string;
+  vehicle: string;
+
+  date: string;
+  location: string;
+  quote: string;
+  gallery: string[];
 }
 
 // Sample client success stories
@@ -24,80 +32,119 @@ const clientSuccesses = [
     id: 1,
     name: "Marco Santos",
     vehicle: "Mitsubishi Montero Sport",
-   
+
     date: "March 15, 2023",
     location: "Makati City",
-    quote: "Proudest day of my life! Thanks to Reymart for making this dream come true.",
-    gallery: ["/images/client-1-delivery.jpg", "/images/client-1-keys.jpg", "/images/client-1-family.jpg"],
+    quote:
+      "Proudest day of my life! Thanks to Reymart for making this dream come true.",
+    gallery: [
+      "/images/client-1-delivery.jpg",
+      "/images/client-1-keys.jpg",
+      "/images/client-1-family.jpg",
+    ],
   },
   {
     id: 2,
     name: "Anna Reyes",
     vehicle: "Mitsubishi Xpander",
-  
+
     date: "April 22, 2023",
     location: "Quezon City",
-    quote: "Our family is so happy with our new Xpander! Perfect for our weekend trips.",
-    gallery: ["/images/client-2-delivery.jpg", "/images/client-2-interior.jpg", "/images/client-2-family.jpg"],
+    quote:
+      "Our family is so happy with our new Xpander! Perfect for our weekend trips.",
+    gallery: [
+      "/images/client-2-delivery.jpg",
+      "/images/client-2-interior.jpg",
+      "/images/client-2-family.jpg",
+    ],
   },
   {
     id: 3,
     name: "Carlos Mendoza",
     vehicle: "Mitsubishi Strada",
-  
+
     date: "May 10, 2023",
     location: "Pasig City",
-    quote: "From inquiry to delivery, Reymart made everything smooth and hassle-free!",
-    gallery: ["/images/client-3-delivery.jpg", "/images/client-3-handshake.jpg", "/images/client-3-driving.jpg"],
+    quote:
+      "From inquiry to delivery, Reymart made everything smooth and hassle-free!",
+    gallery: [
+      "/images/client-3-delivery.jpg",
+      "/images/client-3-handshake.jpg",
+      "/images/client-3-driving.jpg",
+    ],
   },
   {
     id: 4,
     name: "Maria Lim",
     vehicle: "Mitsubishi Mirage G4",
- 
+
     date: "June 5, 2023",
     location: "Taguig City",
-    quote: "My first car ever! So grateful for Reymart's guidance throughout the process.",
-    gallery: ["/images/client-4-delivery.jpg", "/images/client-4-keys.jpg", "/images/client-4-selfie.jpg"],
+    quote:
+      "My first car ever! So grateful for Reymart's guidance throughout the process.",
+    gallery: [
+      "/images/client-4-delivery.jpg",
+      "/images/client-4-keys.jpg",
+      "/images/client-4-selfie.jpg",
+    ],
   },
   {
     id: 5,
     name: "David Tan",
     vehicle: "Mitsubishi Montero Sport",
- 
+
     date: "July 18, 2023",
     location: "Mandaluyong City",
-    quote: "Second car from Reymart! That's how much I trust his service and expertise.",
-    gallery: ["/images/client-5-delivery.jpg", "/images/client-5-showroom.jpg", "/images/client-5-family.jpg"],
+    quote:
+      "Second car from Reymart! That's how much I trust his service and expertise.",
+    gallery: [
+      "/images/client-5-delivery.jpg",
+      "/images/client-5-showroom.jpg",
+      "/images/client-5-family.jpg",
+    ],
   },
-]
+];
 
-export default function ClientSuccessGallery() {
-  const [activeClient, setActiveClient] = useState(clientSuccesses[0])
-  const [activeImageIndex, setActiveImageIndex] = useState(0)
-  const [isViewingGallery, setIsViewingGallery] = useState(false)
+export default function ClientSuccessGallery({
+  contactRef,
+}: {
+  contactRef: React.RefObject<HTMLElement | null>;
+}) {
+  const [activeClient, setActiveClient] = useState(clientSuccesses[0]);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isViewingGallery, setIsViewingGallery] = useState(false);
+  const scrollTo = useLenisScrollTo();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
-
-const handleClientClick = (client: ClientSuccess): void => {
-    setActiveClient(client)
-    setActiveImageIndex(0)
-    setIsViewingGallery(false)
-}
+  const handleClientClick = (client: ClientSuccess): void => {
+    setActiveClient(client);
+    setActiveImageIndex(0);
+    setIsViewingGallery(false);
+  };
 
   const handleGalleryView = () => {
-    setIsViewingGallery(true)
-  }
+    setIsViewingGallery(true);
+  };
 
   const handleNextImage = () => {
-    setActiveImageIndex((prev) => (prev === activeClient.gallery.length - 1 ? 0 : prev + 1))
-  }
+    setActiveImageIndex((prev) =>
+      prev === activeClient.gallery.length - 1 ? 0 : prev + 1
+    );
+  };
 
   const handlePrevImage = () => {
-    setActiveImageIndex((prev) => (prev === 0 ? activeClient.gallery.length - 1 : prev - 1))
-  }
+    setActiveImageIndex((prev) =>
+      prev === 0 ? activeClient.gallery.length - 1 : prev - 1
+    );
+  };
+
+  const handleScheduleTestDrive = () => {
+    if (!contactRef) return;
+    const ref = contactRef.current;
+    if (!ref) return;
+    scrollTo(ref, { duration: 2 });
+  };
 
   return (
     <div ref={ref} className="w-full">
@@ -107,9 +154,12 @@ const handleClientClick = (client: ClientSuccess): void => {
         transition={{ duration: 0.6 }}
         className="mb-10 text-center"
       >
-        <h2 className="text-3xl font-bold mb-2 text-center">Delivery Moments</h2>
+        <h2 className="text-3xl font-bold mb-2 text-center">
+          Delivery Moments
+        </h2>
         <p className="text-lg text-gray-600 mb-10 text-center max-w-3xl mx-auto">
-          Capturing the joy and excitement of clients as they receive their brand new Mitsubishi vehicles
+          Capturing the joy and excitement of clients as they receive their
+          brand new Mitsubishi vehicles
         </p>
       </motion.div>
 
@@ -121,22 +171,28 @@ const handleClientClick = (client: ClientSuccess): void => {
               <motion.div
                 key={client.id}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                }
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 onClick={() => handleClientClick(client)}
                 className={`cursor-pointer relative overflow-hidden rounded-lg ${activeClient.id === client.id ? "ring-4 ring-red-600" : ""}`}
               >
                 <div className="relative aspect-square">
                   <Image
-                    src={ "/next.svg"}
+                    src={"/next.svg"}
                     alt={client.name}
                     fill
                     className="object-cover transition-transform duration-300 hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-2">
-                    <p className="text-white text-xs font-medium truncate">{client.name}</p>
-                    <p className="text-white/80 text-xs truncate">{client.vehicle}</p>
+                    <p className="text-white text-xs font-medium truncate">
+                      {client.name}
+                    </p>
+                    <p className="text-white/80 text-xs truncate">
+                      {client.vehicle}
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -166,7 +222,9 @@ const handleClientClick = (client: ClientSuccess): void => {
                       className="absolute inset-0"
                     >
                       <Image
-                        src={activeClient.gallery[activeImageIndex] || "/next.svg"}
+                        src={
+                          activeClient.gallery[activeImageIndex] || "/next.svg"
+                        }
                         alt={`${activeClient.name} with their new ${activeClient.vehicle}`}
                         fill
                         className="object-cover"
@@ -209,7 +267,9 @@ const handleClientClick = (client: ClientSuccess): void => {
                     <h3 className="font-bold text-lg">{activeClient.name}</h3>
                     <Badge className="bg-red-600">{activeClient.vehicle}</Badge>
                   </div>
-                  <p className="text-gray-700 italic mb-3">&quot;{activeClient.quote}&quot;</p>
+                  <p className="text-gray-700 italic mb-3">
+                    &quot;{activeClient.quote}&quot;
+                  </p>
                   <div className="flex flex-wrap gap-3 text-sm text-gray-600">
                     <div className="flex items-center gap-1">
                       <Calendar className="h-4 w-4" />
@@ -239,9 +299,15 @@ const handleClientClick = (client: ClientSuccess): void => {
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <Badge className="bg-red-600 mb-2">{activeClient.vehicle}</Badge>
-                  <h3 className="text-2xl font-bold mb-1">{activeClient.name}</h3>
-                  <p className="text-white/90 mb-4">&quot;{activeClient.quote}&quot;</p>
+                  <Badge className="bg-red-600 mb-2">
+                    {activeClient.vehicle}
+                  </Badge>
+                  <h3 className="text-2xl font-bold mb-1">
+                    {activeClient.name}
+                  </h3>
+                  <p className="text-white/90 mb-4">
+                    &quot;{activeClient.quote}&quot;
+                  </p>
 
                   <div className="flex flex-wrap gap-4 text-white/80 text-sm mb-4">
                     <div className="flex items-center gap-1">
@@ -254,7 +320,10 @@ const handleClientClick = (client: ClientSuccess): void => {
                     </div>
                   </div>
 
-                  <Button onClick={handleGalleryView} className="bg-white text-gray-900 hover:bg-white/90">
+                  <Button
+                    onClick={handleGalleryView}
+                    className="bg-white text-gray-900 hover:bg-white/90"
+                  >
                     <Camera className="mr-2 h-4 w-4" />
                     View Delivery Gallery
                   </Button>
@@ -271,18 +340,22 @@ const handleClientClick = (client: ClientSuccess): void => {
         transition={{ duration: 0.6, delay: 0.6 }}
         className="mt-12 text-center"
       >
-        <p className="text-gray-600 mb-6">Join our growing family of satisfied Mitsubishi owners</p>
+        <p className="text-gray-600 mb-6">
+          Join our growing family of satisfied Mitsubishi owners
+        </p>
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <motion.button
-            className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md font-medium text-lg"
-            whileHover={{ boxShadow: "0 10px 25px -5px rgba(220, 38, 38, 0.5)" }}
+            className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md font-medium text-sm md:text-lg"
+            whileHover={{
+              boxShadow: "0 10px 25px -5px rgba(220, 38, 38, 0.5)",
+            }}
             transition={{ duration: 0.2 }}
+            onClick={handleScheduleTestDrive}
           >
             Schedule Your Test Drive Today
           </motion.button>
         </motion.div>
       </motion.div>
     </div>
-  )
+  );
 }
-

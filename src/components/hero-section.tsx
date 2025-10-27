@@ -30,16 +30,20 @@ import Client1 from "@/../public/images/client1.jpg";
 import Client2 from "@/../public/images/client2.jpg";
 import Client3 from "@/../public/images/client3.jpg";
 import Client4 from "@/../public/images/client4.jpg";
+import { useLenisScrollTo } from "@/hooks/use-lenis-scrollto";
 // Sample featured client images for the rotating showcase
 const featuredClients = [Client, Client1, Client2, Client3, Client4];
 
 export default function HeroSection({
   homeRef,
+  vehiclesRef,
 }: {
   homeRef: React.RefObject<HTMLElement | null>;
+  vehiclesRef: React.RefObject<HTMLElement | null>;
 }) {
   const controls = useAnimation();
   const inView = useInView(homeRef);
+  const scrollTo = useLenisScrollTo();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isClickedAgent, setIsClickedAgent] = useState(false);
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
@@ -87,6 +91,13 @@ export default function HeroSection({
       label: "Satisfaction",
     },
   ];
+
+  const handleViewLatestOffers = () => {
+    if (!vehiclesRef) return;
+    const ref = vehiclesRef.current;
+    if (!ref) return;
+    scrollTo(ref, { duration: 2 });
+  };
 
   return (
     <section
@@ -166,19 +177,19 @@ export default function HeroSection({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="text-5xl md:text-7xl font-bold text-white mb-4"
+            className="text-4xl md:text-7xl font-bold text-white mb-4"
           >
             <span className="inline-block">
               <motion.span
                 initial={{ backgroundSize: "0% 6px" }}
                 animate={{ backgroundSize: "100% 6px" }}
                 transition={{ duration: 1, delay: 1.2 }}
-                className="bg-gradient-to-r from-red-600 to-red-500 bg-no-repeat bg-bottom"
+                className=" bg-gradient-to-r from-red-600 to-red-500 bg-no-repeat bg-bottom"
               >
                 Reymart
               </motion.span>
             </span>{" "}
-            <span className="inline-block">Marfil</span>
+            <span className="inline-block ">Marfil</span>
           </motion.h1>
 
           <motion.div
@@ -186,7 +197,7 @@ export default function HeroSection({
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
           >
-            <p className="text-xl md:text-2xl text-gray-300 mb-6 max-w-2xl mx-auto md:mx-0">
+            <p className="text-lg md:text-2xl text-gray-300 mb-6 max-w-2xl mx-auto md:mx-0">
               Your trusted Mitsubishi sales executive. Helping you find the
               perfect vehicle for your lifestyle.
             </p>
@@ -268,39 +279,38 @@ export default function HeroSection({
             transition={{ duration: 0.6, delay: 1.2, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
           >
-            <Link href="/inventory">
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onHoverStart={() => setHoveredButton("offers")}
-                onHoverEnd={() => setHoveredButton(null)}
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              onHoverStart={() => setHoveredButton("offers")}
+              onHoverEnd={() => setHoveredButton(null)}
+            >
+              <Button
+                size="lg"
+                className="bg-red-600 hover:bg-red-700 text-white group relative overflow-hidden"
+                onClick={handleViewLatestOffers}
               >
-                <Button
-                  size="lg"
-                  className="bg-red-600 hover:bg-red-700 text-white group relative overflow-hidden"
+                <motion.span
+                  animate={{
+                    x: hoveredButton === "offers" ? [-3, 0] : 0,
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="relative z-10 flex items-center"
                 >
+                  View Latest Offers
                   <motion.span
                     animate={{
-                      x: hoveredButton === "offers" ? [-3, 0] : 0,
+                      x: hoveredButton === "offers" ? [0, 3] : 0,
+                      opacity: hoveredButton === "offers" ? 1 : 0,
                     }}
                     transition={{ duration: 0.3 }}
-                    className="relative z-10 flex items-center"
+                    className="ml-2"
                   >
-                    View Latest Offers
-                    <motion.span
-                      animate={{
-                        x: hoveredButton === "offers" ? [0, 3] : 0,
-                        opacity: hoveredButton === "offers" ? 1 : 0,
-                      }}
-                      transition={{ duration: 0.3 }}
-                      className="ml-2"
-                    >
-                      <ArrowRight className="h-4 w-4" />
-                    </motion.span>
+                    <ArrowRight className="h-4 w-4" />
                   </motion.span>
-                </Button>
-              </motion.div>
-            </Link>
+                </motion.span>
+              </Button>
+            </motion.div>
 
             <Link href="#contact">
               <motion.div
@@ -345,7 +355,7 @@ export default function HeroSection({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.6, duration: 0.6 }}
-            className="mt-6"
+            className="mt-3 md:mt-6 flex flex-col items-center md:items-start"
           >
             <Link
               href="#videos"
@@ -372,7 +382,7 @@ export default function HeroSection({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.8, duration: 0.6 }}
-            className="mt-3"
+            className="mt-1 md:mt-3 flex flex-col items-center md:items-start"
           >
             <a
               href="https://maps.google.com/?q=Mitsubishi+Peak+Motors+Inc+Jose+Abad+Santos+Ave+San+Fernando+Pampanga"
