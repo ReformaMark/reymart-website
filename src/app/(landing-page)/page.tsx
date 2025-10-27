@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageCircle, Phone, Mail } from "lucide-react";
 import LeadForm from "@/components/lead-form";
@@ -11,7 +10,6 @@ import AnimatedHeader from "@/components/animated-header";
 import HeroSection from "@/components/hero-section";
 import AnimatedSection from "@/components/animated-section";
 import YouTubeBanner from "@/components/youtube-banner";
-import CallModal from "@/components/call-modal";
 import ClientSuccessGallery from "@/components/client-success-gallery";
 import LogoWhite from "@/../public/images/mitsubishi-logo-white.webp";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -86,34 +84,24 @@ export default function Home() {
               />
             </div>
             <div>
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">
+              <h2 className="text-xl md:text-3xl font-bold mb-6 text-gray-900">
                 About Me
               </h2>
-              <p className="text-lg text-gray-700 mb-6">
+              <p className="text-sm md:text-lg text-gray-700 mb-6">
                 With over 5 years of experience as a Mitsubishi sales
                 consultant, I&apos;m dedicated to helping you find the perfect
                 vehicle that matches your needs and budget.
               </p>
-              <p className="text-lg text-gray-700 mb-8">
+              <p className="text-sm md:text-lg text-gray-700 mb-8">
                 I pride myself on providing exceptional customer service and
                 in-depth knowledge of the entire Mitsubishi lineup. Whether
                 you&apos;re looking for a family SUV, a rugged pickup, or an
                 efficient sedan, I&apos;m here to guide you through every step
                 of the process.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <CallModal phoneNumber="">a</CallModal>
-                <Button
-                  variant="outline"
-                  className="gap-2"
-                  onClick={() =>
-                    (window.location.href = "mailto:reymart@mitsubishi.com")
-                  }
-                >
-                  <Mail className="h-4 w-4" />
-                  reymart@mitsubishi.com
-                </Button>
-              </div>
+              <h2 className="text-center text-lg md:text-xl font-semibold">
+                &quot;God is with me , God is always with me!&quot;
+              </h2>
             </div>
           </AnimatedSection>
         </div>
@@ -127,10 +115,10 @@ export default function Home() {
         >
           <div className="container mx-auto max-w-6xl">
             <AnimatedSection className="">
-              <h2 className="text-3xl font-bold mb-6 text-center">
+              <h2 className="text-xl md:text-3xl font-bold mb-6 text-center">
                 My YouTube Channel
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto text-center mb-8">
+              <p className="text-sm md:text-lg text-gray-600 max-w-2xl mx-auto text-center mb-8">
                 Subscribe to my channel for the latest vehicle reviews,
                 walkthroughs, and special offers.
               </p>
@@ -173,8 +161,10 @@ export default function Home() {
           <div className="container mx-auto max-w-6xl">
             <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="">
-                <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
-                <p className="text-lg text-gray-300 mb-8">
+                <h2 className="text-xl md:text-3xl font-bold mb-6">
+                  Get in Touch
+                </h2>
+                <p className="text-sm md:text-lg text-gray-300 mb-8">
                   Interested in a specific model? Have questions about financing
                   or trade-ins? Fill out the form and I&apos;ll get back to you
                   within 24 hours.

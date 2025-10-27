@@ -34,16 +34,16 @@ export default function YouTubeBanner() {
       <div className="absolute inset-0 size-full flex flex-col justify-center px-6 md:px-10">
         <div className="flex items-center gap-3 mb-3">
           <FaYoutube className="h-8 w-8 text-red-600" />
-          <h3 className="text-xl md:text-2xl font-bold text-white">
+          <h3 className="text-lg md:text-2xl font-bold text-white">
             Mitsubishi Reymart Marfil
           </h3>
         </div>
-        <p className="text-white/90 max-w-md mb-4 text-sm md:text-base">
+        <p className="text-white/90 max-w-md mb-4 text-xs sm:text-sm md:text-base">
           Subscribe to my channel for the latest Mitsubishi vehicle reviews,
           walkthroughs, and special offers.
         </p>
         <div className="flex gap-3">
-          <Button className="bg-red-600 hover:bg-red-700 text-white">
+          <Button className="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm md:text-base">
             <FaYoutube className="mr-2 h-4 w-4" />
             Subscribe Now
           </Button>
@@ -55,7 +55,7 @@ export default function YouTubeBanner() {
           >
             <Button
               variant="outline"
-              className="text-white border-white bg-white/10"
+              className="text-white border-white bg-white/10  text-xs sm:text-sm md:text-base"
             >
               <ExternalLink className="mr-2 h-4 w-4" />
               Visit Channel

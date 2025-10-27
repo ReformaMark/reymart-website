@@ -84,10 +84,10 @@ export default function FeaturedCars() {
         transition={{ duration: 0.6 }}
         className="mb-10"
       >
-        <h2 className="text-3xl font-bold mb-2 text-center text-gray-900">
+        <h2 className="text-xl md:text-3xl font-bold mb-2 text-center text-gray-900">
           Featured Vehicles
         </h2>
-        <p className="text-lg text-gray-600 mb-10 text-center max-w-3xl mx-auto">
+        <p className="text-sm md:text-lg text-gray-600 mb-10 text-center max-w-3xl mx-auto">
           Explore our latest models and special offers. Schedule a test drive
           today!
         </p>

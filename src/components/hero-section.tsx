@@ -149,7 +149,7 @@ export default function HeroSection({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="flex items-center justify-center md:justify-start gap-3 mb-6"
+            className="flex items-center justify-center md:justify-start gap-3 mb-6 mt-5 sm:mt-0"
           >
             <motion.div
               whileHover={{
@@ -198,8 +198,7 @@ export default function HeroSection({
             transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
           >
             <p className="text-lg md:text-2xl text-gray-300 mb-6 max-w-2xl mx-auto md:mx-0">
-              Your trusted Mitsubishi sales executive. Helping you find the
-              perfect vehicle for your lifestyle.
+              Your trusted Mitsubishi sales agent. Drive your dream, I got you.
             </p>
           </motion.div>
           <motion.div
@@ -247,7 +246,7 @@ export default function HeroSection({
                 <p className="text-sm text-gray-400 font-medium">
                   Mitsubishi Peak Motors Inc.
                 </p>
-                <p className="text-gray-300">
+                <p className="text-gray-300 text-xs md:text-sm">
                   Jose Abad Santos Ave, San Fernando, Pampanga
                 </p>
               </div>

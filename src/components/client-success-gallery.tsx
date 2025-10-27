@@ -154,10 +154,10 @@ export default function ClientSuccessGallery({
         transition={{ duration: 0.6 }}
         className="mb-10 text-center"
       >
-        <h2 className="text-3xl font-bold mb-2 text-center">
+        <h2 className="text-xl md:text-3xl font-bold mb-2 text-center">
           Delivery Moments
         </h2>
-        <p className="text-lg text-gray-600 mb-10 text-center max-w-3xl mx-auto">
+        <p className="text-sm md:text-lg text-gray-600 mb-10 text-center max-w-3xl mx-auto">
           Capturing the joy and excitement of clients as they receive their
           brand new Mitsubishi vehicles
         </p>
